@@ -19,14 +19,14 @@ MAINTAINER mkieboom@mapr.com
 RUN apt-get autoremove && apt-get -f install && apt-get update && apt-get upgrade -y
 
 # Instal fswebcam to capture screenshots
-RUN apt-get install -y wget curl vim fswebcam
+RUN apt-get install -y curl fswebcam
 
 # Add the webcamcapture.sh script and make it executable
 ADD ./webcamcapture.sh /webcamcapture.sh
 RUN chmod +x /webcamcapture.sh
 
-#CMD ./webcamcapture.sh 
-CMD /bin/bash
+CMD ./webcamcapture.sh 
+#CMD /bin/bash
 
 # Run fswebcam to capture webcam images
 #CMD fswebcam -d /dev/video0 --resolution 640x480 --loop 1 --jpeg 85 --frames 5 /tmp/webcam/webcam-%Y%m%d-%H%M%S.jpg
