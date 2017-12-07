@@ -6,7 +6,7 @@
 # docker build -t mkieboom/raspberrypi-webcam-capture-docker .
 #
 # Run the docker container:
-# docker run -it --device=/dev/video0:/dev/video0 -v /tmp/webcam:/tmp/webcam mkieboom/raspberrypi-webcam-capture-docker
+# docker run -it --device=/dev/video0:/dev/video0 -v /tmp/webcam:/tmp/webcam -e MAPR_USER=mapr -e MAPR_PASSWORD=mapr -e MAPR_HOST=MAPRN01 -e MAPR_STREAM=imageclassification-stream -e MAPR_STREAM_TOPIC=webcam-image-events mkieboom/raspberrypi-webcam-capture-docker
 #
 #
 # Using arm32v6 alpine as the base image
