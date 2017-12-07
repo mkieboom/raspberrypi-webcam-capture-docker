@@ -25,6 +25,9 @@ while true; do
     # Once processed, remove the file to avoid the filesystem to fload
     echo "Removing file '"$filename"'"
     rm -rf $outputfolder/$filename
+  else
+	echo "No webcam image found. Is the webcam connected? Pausing for 3 seconds"
+	sleep 3
   fi
 
 done;
