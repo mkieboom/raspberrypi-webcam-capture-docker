@@ -1,6 +1,7 @@
 #!/bin/bash
 
 while true; do
+  # Set the output folder and filename to store the image
   outputfolder=/tmp/webcam/
   filename=webcam-$(date +"%Y%m%d-%H%M%S").jpg
 
