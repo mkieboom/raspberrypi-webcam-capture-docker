@@ -7,8 +7,8 @@ while true; do
 
 
   # Check if the webcam is connected
-  if [ -f "/dev/video0" ]
-  then
+  #if [ -f "/dev/video0" ]
+  #then
     # Capture a webcam image
     fswebcam -d /dev/video0 --resolution 640x480 --jpeg 85 --frames 1 $outputfolder/$filename
 
@@ -33,8 +33,8 @@ while true; do
       echo "No webcam image found. Is the webcam connected? Pausing for 5 seconds"
 	  sleep 5
     fi
-  else
-  	echo "No webcam connected to /dev/video0. Pausing for 5 seconds"
-    sleep 5
-  fi
+  #else
+  #	echo "No webcam connected to /dev/video0. Pausing for 5 seconds"
+  #  sleep 5
+  #fi
 done;
