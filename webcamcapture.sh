@@ -17,7 +17,7 @@ while true; do
     then
       # Push the captured image to MapR-FS
       curl -i -X PUT "http://$MAPR_HOST:14000/webhdfs/v1/webcam/$filename?op=CREATE&user.name=mapr"
-      curl -i -X PUT -T $outputfolder/$filename -H "Content-Type:application/octet-stream" "http://$MAPR_HOST:14000/webhdfs/v1/webcam/$filename?op=CREATE&overwrite=true&permission=444&data=true&user.name=mapr"
+      curl -i -X PUT -T $outputfolder/$filename -H "Content-Type:application/octet-stream" "http://$MAPR_HOST:14000/webhdfs/v1/webcam/$filename?op=CREATE&overwrite=true&op=SETPERMISSION&permission=444&data=true&user.name=mapr"
 
       # Push an event on MapR Streams to tell a new image has been uploaded
       echo "Pushing new file ('"$filename"') event on MapR Streams using Kafka REST API"
