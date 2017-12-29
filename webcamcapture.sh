@@ -5,6 +5,8 @@ while true; do
   outputfolder=/tmp/webcam/
   filename=webcam-$(date +"%Y%m%d-%H%M%S").jpg
 
+  # URL Encode the MapR Volume path to use in the MapR Streams REST API
+  MAPR_VOLUME_URLENCODED==$(echo $MAPR_VOLUME | sed -e "s|/|%2F|g")
 
   # Check if the webcam is connected
   #if [ -f "/dev/video0" ]
@@ -23,7 +25,7 @@ while true; do
       echo "Pushing new file ('"$filename"') event on MapR Streams using Kafka REST API"
       curl -X POST -H "Content-Type: application/vnd.kafka.json.v1+json" \
          --data '{"records":[{"value": {"fileInfo": {"filename" : "'$filename'" , "path" : "'$outputfolder'"}}}]}' \
-         http://$MAPR_USER:$MAPR_PASSWORD@$MAPR_HOST:8082/topics/$MAPR_STREAM%3A$MAPR_STREAM_TOPIC
+         http://$MAPR_USER:$MAPR_PASSWORD@$MAPR_HOST:8082/topics/$MAPR_VOLUME_URLENCODED$MAPR_STREAM%3A$MAPR_STREAM_TOPIC
       echo "\nPush finished"
 
       # Once processed, remove the file to avoid the filesystem to fload
